@@ -212,7 +212,7 @@ def generate_node2vec_embeddings(A, emd_size=128, negative_injection=False, trai
         A = A.copy()
         A[row, col] = 1  # inject negative train
         A[col, row] = 1  # inject negative train
-    nx_G = nx.from_scipy_sparse_matrix(A)
+    nx_G = nx.from_scipy_sparse_array(A)
     G = node2vec.Graph(nx_G, is_directed=False, p=1, q=1)
     G.preprocess_transition_probs()
     walks = G.simulate_walks(num_walks=10, walk_length=80)
